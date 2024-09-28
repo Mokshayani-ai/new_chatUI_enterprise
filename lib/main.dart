@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
           bodyMedium: TextStyle(color: Colors.white, fontFamily: 'Aleo'),
         ),
       ),
-      home: HomeScreen(),
+      home: LoginPage(),
     );
   }
 }
@@ -30,10 +30,10 @@ class HomeScreen extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFF15343E),
+              Color(0xFF164858),
               Color(0xFF272222),
             ],
-            begin: Alignment(-1.0, -0.5),
+            begin: Alignment(2.3, -0.5),
             end: Alignment(1.0, 0.5),
           ),
         ),
@@ -66,10 +66,64 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 16.0),
+                      child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('LOG-OUT',
+                        style: TextStyle(
+                          color:Colors.white70,
+                          fontFamily: 'Aleo',
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        )),
+                        backgroundColor: Color(0xFF292D32),
+                        content: Text('Are you sure you want to logout?',
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontFamily: 'Aleo',
+                          fontSize: 15,
+                        )),
+                        actions: <Widget>[
+                          TextButton(
+                            child: Text('Cancel',
+                            style: TextStyle(
+                              fontFamily: 'Aleo',
+                              fontSize:15,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            )),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          TextButton(
+                            child: Text('Log-out',
+                            style: TextStyle(
+                              fontFamily: 'Aleo',
+                              fontSize:15,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            )),
+                            onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
                       child: CircleAvatar(
                         radius: 30,
                         backgroundImage: AssetImage('assets/images/Photograph.png'),
                       ),
+                    ),
                     ),
                   ],
                 ),
@@ -80,7 +134,12 @@ class HomeScreen extends StatelessWidget {
                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyCorpus()),
+                    );
+                  },
                       child: Text(
                         'My corpus', //<anubhav> please link this to the stored user corpus ( files and image analysis )
                         style: TextStyle(
@@ -98,7 +157,12 @@ class HomeScreen extends StatelessWidget {
                     ),
                     SizedBox(width:7),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => OrgCorpus()),
+                    );
+                  },
                       child: Text(
                         'Org. corpus', //<anubhav> please link this to the stored organization corpus. 
                         style: TextStyle(
@@ -451,4 +515,426 @@ class ChatMessage extends StatelessWidget {
       ),
     );
   }
+}
+
+
+
+// login page 
+class LoginPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+     body: Container(
+      decoration: BoxDecoration(
+        gradient : LinearGradient(
+          colors: [
+            Color(0xFF164858),
+            Color(0xFF272222),
+          ],
+          begin : Alignment(2.0,-0.6),
+          end: Alignment(1.0,0.5),
+        ),
+      ),
+      child : Center(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                width: 150 ,
+                height : 150 , 
+                child: Image.asset("/Users/manya/chat_sih/my_app/lib/white_nobg_logo.png"),),
+
+                SizedBox(height: 16),
+                Text(
+                  'MOKSHAYANI.AI',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontFamily: 'Aleo',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                SizedBox(height: 32),
+                Container (
+                  width: 330,
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                  color: Color(0xFF292D32),
+                 
+                  borderRadius: BorderRadius.circular(30),
+                  ),
+          child: Column(
+            children : [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [ 
+                    ElevatedButton(
+                      onPressed: (){},
+                      child: Text("SIGN-IN",
+                      style : TextStyle(
+                        color : Colors.white,
+                        fontFamily: 'Aleo',
+                        fontSize : 15,
+                      )),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF33363E),
+                        shape : RoundedRectangleBorder(
+                          borderRadius:BorderRadius.circular(20),
+                          side: BorderSide(color:Colors.grey , width:0.5) 
+                          ),
+                          minimumSize: Size(0,50)
+                      )
+                    ),
+                    SizedBox(width: 16),
+                    ElevatedButton(
+                      onPressed : (){},
+                      child: Text("SIGN-UP" , 
+                      style: TextStyle (
+                        color : Colors.white,
+                        fontFamily : 'Aleo',
+                        fontSize : 15
+                      )),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF33363E),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: BorderSide(color: Colors.grey, width:0.5)
+                          ),
+                          minimumSize:Size(0, 50)
+                        ),
+                    ),
+                    
+                  ],
+
+
+                ),
+
+                SizedBox(height:32),
+                Container(
+                width: 260, 
+                child : TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Enter email address',
+                    filled : true , 
+                    fillColor : Color(0xFF444343),
+                     hintStyle: TextStyle(
+                      color: Color.fromARGB(255, 150, 149, 149),
+                      fontFamily: 'Aleo',
+                      fontSize: 15, ) ,
+                      border: OutlineInputBorder(
+                  borderRadius : BorderRadius.circular(20),
+                  borderSide: BorderSide.none,
+                ) ,      
+                    
+                  )
+                ),
+                ),
+          
+                SizedBox(height:20),
+                Container (
+                  width : 260,
+                child : TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    
+                    hintText : 'Enter password',
+                    filled : true, 
+                    
+                    fillColor: Color(0xFF444343),
+                    hintStyle: TextStyle(
+                      color: Color.fromARGB(255, 150, 149, 149),
+                      fontFamily: 'Aleo',
+                      fontSize: 15, ) ,
+                      border: OutlineInputBorder(
+                  borderRadius : BorderRadius.circular(20),
+                  borderSide: BorderSide.none,
+                ) ,   
+                            
+                 ) ,
+                  ),
+                ),
+                    SizedBox(height: 30),
+                    SizedBox(
+                      width : 150,
+                      child: ElevatedButton(
+                        onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
+                  },
+                        child : Text('Continue',
+                        style: TextStyle(
+                          fontFamily: 'Aleo',
+                          fontSize: 15, 
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+
+                        )),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          //padding:EdgeInsets.symmetric(vertical:16)
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            side: BorderSide(color: Colors.white70, width:1)
+                          ),
+                          minimumSize:Size(0, 50)
+                        ),
+                       
+                      ),
+                     
+                    ),
+                    SizedBox(height:10),
+                  
+                
+                
+
+
+            ]
+                ),
+                ),
+            ],),
+        ) ,)
+
+     )
+    );
+  }
+  }
+
+  //corpus screens 
+  class MyCorpus extends StatelessWidget {
+  final List<FileInfo> files = [
+    FileInfo(name: 'Market_Document.pdf', uploadDate: DateTime(2024, 6, 15)),
+    FileInfo(name: 'image21.png', uploadDate: DateTime(2024, 8, 20)),
+    FileInfo(name: 'SIH.jpg', uploadDate: DateTime(2024, 9, 23)),
+    FileInfo(name: 'idea.png', uploadDate: DateTime(2024, 9, 23)),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF14323C),
+              Color(0xFF272222),
+            ],
+            begin: Alignment(1.0, -0.5),
+            end: Alignment(1.0, 0.5),
+          ),
+        ),
+        child: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_ios_new, color: Colors.white70),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: Container(
+                          width: 200,
+                          padding: EdgeInsets.symmetric(vertical: 12.0),
+                          decoration: BoxDecoration(
+                            color: Color(0xFF292D32),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'My Corpus',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 48), // To balance the layout
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'FILE NAME',
+                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'UPLOAD DATE',
+                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: files.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: Colors.grey.shade600, width: 0.5),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              files[index].name,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Text(
+                              '${files[index].uploadDate.year}-${files[index].uploadDate.month.toString().padLeft(2, '0')}-${files[index].uploadDate.day.toString().padLeft(2, '0')}',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class OrgCorpus extends StatelessWidget {
+  final List<FileInfo> files = [
+    FileInfo(name: 'HR_Policies_Doc.pdf', uploadDate: DateTime(2024, 1, 5)),
+    FileInfo(name: 'PRD_1.pdf', uploadDate: DateTime(2024, 1, 20)),
+    FileInfo(name: 'Events2024.pdf', uploadDate: DateTime(2024, 8, 23)),
+    FileInfo(name: 'Handbook.pdf', uploadDate: DateTime(2024, 9, 23)),
+    FileInfo(name: 'Report23A.pdf', uploadDate: DateTime(2024, 9, 23)),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF14323C),
+              Color(0xFF272222),
+            ],
+            begin: Alignment(1.0, -0.5),
+            end: Alignment(1.0, 0.5),
+          ),
+        ),
+        child: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_ios_new, color: Colors.white70),
+                      onPressed: () => Navigator.of(context).pop(),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: Container(
+                          width: 200,
+                          padding: EdgeInsets.symmetric(vertical: 12.0),
+                          decoration: BoxDecoration(
+                            color: Color(0xFF292D32),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Org. Corpus',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 48), // To balance the layout
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'FILE NAME',
+                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'UPLOAD DATE',
+                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: files.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: Colors.grey.shade600, width: 0.5),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              files[index].name,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Text(
+                              '${files[index].uploadDate.year}-${files[index].uploadDate.month.toString().padLeft(2, '0')}-${files[index].uploadDate.day.toString().padLeft(2, '0')}',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class FileInfo {
+  final String name;
+  final DateTime uploadDate;
+
+  FileInfo({required this.name, required this.uploadDate});
 }
